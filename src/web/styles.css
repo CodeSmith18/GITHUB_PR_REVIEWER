@@ -127,9 +127,19 @@ h1 {
 }
 
 .stage-card p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 8px;
   color: #527465;
   font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.stage-card strong {
+  color: #2e604c;
+  font-size: 0.74rem;
   font-weight: 800;
 }
 

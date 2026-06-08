@@ -11,6 +11,20 @@ flowchart TD
   B --> D["Static React Dashboard"]
 ```
 
+## Stage 2 Architecture
+
+```mermaid
+flowchart TD
+  A["Browser or API Client"] --> B["Fastify Web Service"]
+  B --> C["Health API"]
+  B --> D["Infrastructure API"]
+  D --> E["PostgreSQL + pgvector"]
+  D --> F["BullMQ Queue"]
+  F --> G["Redis / Upstash"]
+  B --> H["In-process Worker"]
+  H --> F
+```
+
 ## Target MVP Architecture
 
 ```mermaid
@@ -36,12 +50,14 @@ flowchart TD
 - creates background jobs
 - serves dashboard APIs
 - serves the built React dashboard
+- reports database and queue health
 
 ### Worker
 
 - indexes repositories
 - reviews pull requests
 - updates repository vectors after merge
+- processes BullMQ jobs inside the same Render web service for the MVP
 
 ### PostgreSQL + pgvector
 
@@ -49,11 +65,13 @@ flowchart TD
 - stores repositories
 - stores review history
 - stores code chunks and embeddings
+- uses `vector(384)` for the first lightweight embedding path
 
 ### Upstash Redis
 
 - stores lightweight background jobs
 - prevents webhook requests from doing slow work
+- can be configured with either `REDIS_URL` or split Upstash host/port/password variables
 
 ### Groq
 

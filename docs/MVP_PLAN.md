@@ -17,6 +17,8 @@ A user installs the GitHub App on a repository. PatchWise indexes the repository
 - health check endpoint
 - base documentation
 
+Status: complete.
+
 ### Stage 2: Database + Queue Setup
 
 - PostgreSQL connection
@@ -25,6 +27,8 @@ A user installs the GitHub App on a repository. PatchWise indexes the repository
 - Upstash Redis connection
 - BullMQ queue and worker loop
 
+Status: complete.
+
 ### Stage 3: GitHub App Integration
 
 - GitHub webhook endpoint
@@ -32,6 +36,8 @@ A user installs the GitHub App on a repository. PatchWise indexes the repository
 - installation event handling
 - repository storage
 - Octokit installation client
+
+Status: next.
 
 ### Stage 4: Repository Indexing
 
@@ -80,3 +86,16 @@ A user installs the GitHub App on a repository. PatchWise indexes the repository
 - no user-provided LLM keys in v1
 - no billing in v1
 - no multi-tenant team features in v1
+
+## Stage Gate Workflow
+
+After each stage:
+
+- update the documentation
+- run verification
+- commit the stage
+- push a stage branch
+- open or provide the pull request link
+- stop and list manual setup needed for the next stage
+
+The next stage should not start until the previous PR is reviewed and merged manually in GitHub.
