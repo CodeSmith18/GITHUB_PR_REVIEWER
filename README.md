@@ -11,14 +11,14 @@ The MVP is designed for a small Render deployment:
 
 ## Current Status
 
-Stage 1 is the project foundation:
+Stage 2 is the database and queue setup:
 
-- Fastify API server
-- React + Vite dashboard
-- TypeScript configuration
-- Render-ready build and start scripts
-- health check endpoint
-- first documentation pass
+- PostgreSQL and Drizzle schema
+- `pgvector` migration for code embeddings
+- BullMQ queue configuration
+- Redis/Upstash connection settings
+- infrastructure health endpoint
+- sample background job endpoint
 
 ## Local Development
 
@@ -67,8 +67,17 @@ Expected response:
 }
 ```
 
+## Infrastructure Check
+
+```text
+GET /api/infrastructure
+```
+
+This endpoint reports whether Postgres and Redis are configured and reachable.
+
 ## Documentation
 
 - [MVP plan](docs/MVP_PLAN.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Stage 1 notes](docs/STAGE_1_FOUNDATION.md)
+- [Stage 2 notes](docs/STAGE_2_DATABASE_QUEUE.md)
